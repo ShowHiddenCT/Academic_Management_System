@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_expense>
+
+@{
+    ViewBag.Title = "Index";
+    var sumExpense = 0;
+}
+
+<h2>缴费</h2>
+
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>
+                费用名字
+            </th>
+            <th>
+                费用金额
+            </th>
+        </tr>
+    </thead>
+    <tboday>
+        @foreach (var item in Model)
+        {
+            sumExpense += int.Parse(item.ExpenseNum.ToString());
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpenseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpenseNum)
+                </td>
+            </tr>
+        }
+    </tboday>
+</table>
+<div class="layui-row center-block text-center">
+    <a href="@Url.Action("Paying",new{ id= ViewBag.studentNo+","+@sumExpense.ToString()})" class="layui-btn layui-btn-radius">缴费</a>
+    <a href="@Url.Action("Index", new { id =@ViewBag.studentNo })" class="layui-btn layui-btn-radius">返回</a>
+</div>

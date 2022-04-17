@@ -1,0 +1,26 @@
+﻿@model WebApplication3.Models.tb_Admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminPasswd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminPasswd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdminNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

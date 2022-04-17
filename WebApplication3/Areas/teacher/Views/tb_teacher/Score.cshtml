@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_stucourse>
+
+@{
+    ViewBag.Title = "Score";
+}
+
+<h2>录入成绩</h2>
+@using (Html.BeginForm("AddScore", "tb_teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="file" name="ScoreFile" />
+    <input type="submit" class="btn btn-success" />
+}
+
+@using (Html.BeginForm(new { Id = ViewBag.teacherNo }))
+{
+    @Html.AntiForgeryToken()
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>课程号</th>
+                <th>课程名称</th>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>分数</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var k = "a" + item.Id.ToString();
+                <tr>
+                    <td>@item.CourseNo</td>
+                    <td>@Html.DisplayFor(modelItem => item.tb_course.CourseName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.tb_student.StudentNo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.tb_student.StudentName)</td>
+
+                    <td>
+                        @Html.EditorFor(modelItem => item.Grade, "tb_stucourse", k, new { htmlAttributes = new { @class = "text-center", style = "max-width:60px;" } })
+                        @Html.ValidationMessage(k, "", new { style = "color:red;" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="center-block text-center">
+        <button type="submit" class="layui-btn layui-btn-radius">保存</button>
+        <a href="@Url.Action("Index", new { id = @ViewBag.teacherNo })" class="layui-btn layui-btn-radius">返回</a>
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_course>
+
+@{
+    ViewBag.Title = "Course";
+}
+
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "loading",
+        UpdateTargetId = "mainWindow",
+        OnFailure = "OnFailure"
+    };
+}
+
+<h2>Course</h2>
+@using (Html.BeginForm(new { stuNo = ViewBag.studentNo }))
+{
+    @Html.AntiForgeryToken()
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>课程号</th>
+                <th>课程名称</th>
+                <th>授课老师</th>
+                <th>上课时间</th>
+                <th>上课地点</th>
+                <th>学时</th>
+                <th>课程类型</th>
+                <th>学分</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var k = item.CourseNo;
+                <tr>
+                    <td>@item.CourseNo</td>
+                    <td>@item.CourseName</td>
+                    <td>@Html.DisplayFor(modelItem => item.tb_teacher.TeacherName)</td>
+                    <td>@item.CourseTime</td>
+                    <td>@item.CoursePlace</td>
+                    <td>@item.CourseHour</td>
+                    <td>@item.CourseType</td>
+                    <td>@item.CourseCredit</td>
+                    <td>
+                        @Ajax.ActionLink("选择", "SelectCourse", new { id = item.CourseNo + "," + @ViewBag.studentNo + "," + item.CourseTeacher }, ajaxOptions)
+                        @Ajax.ActionLink("退选", "DeleteCourse", new { id = item.CourseNo + "," + @ViewBag.studentNo + "," + item.CourseTeacher }, ajaxOptions)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

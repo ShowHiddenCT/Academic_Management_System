@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_stucourse>
+@{
+    ViewBag.Title = "selectCourse";
+}
+
+<h2>selectCourse</h2>
+
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>课程号</th>
+            <th>课程名称</th>
+            <th>授课老师</th>
+            <th>上课时间</th>
+            <th>上课地点</th>
+            <th>学时</th>
+            <th>课程类型</th>
+            <th>学分</th>
+            <th>状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.tb_course.CourseNo)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_course.CourseName)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_teacher.TeacherName)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_course.CourseTime)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_course.CoursePlace)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_course.CourseHour)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_course.CourseType)</td>
+            <td> @Html.DisplayFor(modelItem => item.tb_course.CourseCredit)</td>
+            <td style="color: #1E9FFF">选中</td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CourseNo }, new { @class = "layui-btn layui-btn-xs" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseNo }, new { @class = "layui-btn layui-btn-danger layui-btn-xs" })
+            </td>*@
+        </tr>
+        }
+    </tbody>
+</table>
+

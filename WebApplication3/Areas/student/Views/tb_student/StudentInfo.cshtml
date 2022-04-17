@@ -1,0 +1,56 @@
+﻿@model WebApplication3.Models.tb_student
+
+
+<h2 align="center">个人信息</h2>
+@using (Html.BeginForm("Studentinfo", "tb_student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-md-6">
+
+        <table class="col-md-12 table table-bordered">
+            <tr>
+                <td class="col-md-4">学号</td>
+                <td>@Html.TextBox("id", Model.StudentNo, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">姓名</td>
+                <td>@Html.TextBox("StudentName", Model.StudentName, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">性别</td>
+                <td>@Html.TextBox("StudentSex", Model.StudentSex, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">手机号码</td>
+                <td>@Html.TextBox("StudentTel", Model.StudentTel, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">专业</td>
+                <td>@Html.TextBox("MajorNo", @Model.tb_major.MajorName, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">出生日期</td>
+                <td>@Html.TextBox("StudentBirthday", @Model.StudentBirthday, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">身份证号</td>
+                <td>@Html.TextBox("StudentId", @Model.StudentId, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @if (Model.Studentphoto == null)
+        {
+            <lable>选择上传文件</lable>
+            <input type="file" name="images" />
+            <input type="submit" class="layui-btn" />
+        }
+        else
+        {
+            <label>学生照片</label>
+            <img style="width:100px; height:100px " src="~/Pictures/@Model.Studentphoto" />
+        }
+    </div>
+
+}
+
+

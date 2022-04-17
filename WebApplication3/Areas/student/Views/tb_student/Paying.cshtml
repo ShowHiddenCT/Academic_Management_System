@@ -1,0 +1,54 @@
+﻿@model WebApplication3.Models.tb_student
+@{
+    ViewBag.Title = "Paying";
+}
+@{
+        var ajaxOptions = new AjaxOptions
+        {
+            LoadingElementId = "loading",
+            UpdateTargetId = "mainWindow",
+            OnFailure = "OnFailure"
+    };
+}
+
+<style>
+    a:link {
+        color: white;
+    }
+    a:link {
+        color: white;
+    }
+</style>
+<div id="myModal" class="modal fade" style="margin-top:50px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header btn-success" style="background: #009688">
+                <h4 class="modal-title">请核对信息</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>缴费人：</dt>
+                    <dd>@ViewBag.studentName</dd>
+
+                    <dt>缴费金额：</dt>
+                    <dd>@ViewBag.sumExpense</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="btn-block text-right">
+                         <button class="layui-btn" disabled>@Ajax.ActionLink("确定", "Payof", new {id=Model.StudentNo},ajaxOptions)</button>
+                         <button class="layui-btn layui-btn-danger" disabled>@Ajax.ActionLink("取消", "PayExpense", new {id=Model.StudentNo},ajaxOptions)</button>
+                        
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#myModal").modal();
+    $(".modal-backdrop").remove();
+</script>

@@ -1,0 +1,124 @@
+﻿@*@model WebApplication3.Areas.Login.Models.Userlogin*@
+@{
+    ViewBag.Title = "Login";
+    var ajaxOptions = new AjaxOptions { UpdateTargetId = "mainWindow" };
+    var c4 = new { @style = "color:red;" };
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #loginFlex {
+        background: rgba(255,255,255,0.7);
+        border-radius: 10%;
+        width: 400px;
+        margin-top: 100px;
+        border-color: white;
+        border-style: solid;
+        height: 380px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .inputRadius {
+        border-color: white;
+        border-width: 2px;
+        border-radius: 15px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="layui-fluid">
+
+            <div id="loginFlex"style="margin-top:0px">
+                <lable style="font-size: 20px; margin-bottom: 10px; color: white;">
+                    登录
+                </lable>
+                <div class="layui-row layui-col-space15 Flex" style="color: white;">
+                    <div class="layui-col-sm8 layui-col-md8" style=" color: white;">
+                        <div class="layui-form-item" style="border-color: white;">
+                            <input type="text" name="id" lay-verify="required|userName" autocomplete="off" placeholder="账号" class="layui-input inputRadius">
+                            <i style="margin-top:7px;margin-left:5px" class="layui-icon layui-icon-username zyl_lofo_icon"></i>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs8 layui-col-sm8 layui-col-md8">
+                        <div class="layui-form-item">
+                            <input type="password" name="passwd" lay-verify="required|pass" autocomplete="off" placeholder="密码" class="layui-input inputRadius">
+                            <i style="margin-top:7px;margin-left:5px" class="layui-icon layui-icon-password zyl_lofo_icon"></i>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                        <div class="layui-row" style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                            <div class="layui-col-xs4 layui-col-xs4 layui-col-sm4 layui-col-md4">
+                                <div class="layui-form-item" style="margin-bottom:0">
+                                    <input type="text" name="verifycode" id="vercode" lay-verify="required|vercodes" autocomplete="off" placeholder="验证码" class="layui-input inputRadius" maxlength="4">
+                                    <i class="layui-icon layui-icon-vercode zyl_lofo_icon"></i>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4 layui-col-xs4 layui-col-sm4 layui-col-md4" style=" margin-left: 30px;">
+                                <img style="height:35px" alt="验证码图片" class="img" onclick="refresh(this)" src="/Login/VerifyCode" title="看不清？换一张">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                            <label class="radio-inline" style="margin-left: 0px;"><input style="font-size:18px;margin-left:10px" name="identy" type="radio" value="管理员" checked="">管理员</label>
+                            <label class="radio-inline" style="margin-left: 10px;"><input style="font-size:18px;margin-left:10px" name="identy" type="radio" value="学生">学生</label>
+                            <label class="radio-inline" style="margin-left: 10px;"><input style="font-size:18px;margin-left:10px" name="identy" type="radio" value="教师">教师</label>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4" style="margin-left:20px;margin-right:20px;border-radius: 10%;">
+                        <input type="submit" value="登录" class="layui-btn layui-btn-fluid" style="border-radius: 10px;">
+                        @Html.ValidationMessage("failed")
+                    </div>
+
+                </div>
+            </div>
+        <style>
+            /* 覆盖原框架样式 */
+            .layui-elem-quote {
+                background-color: inherit !important;
+            }
+
+            .layui-input, .layui-select, .layui-textarea {
+                background-color: inherit;
+                padding-left: 30px;
+            }
+        </style>
+        <style>
+            video {
+                position: fixed; /*//视频定位方式设为固定*/
+                right: 0;
+                bottom: 0; /*//视频位置*/
+                min-width: 100%;
+                min-height: 100%; /*//不会因视频尺寸造成页面需要滚动*/
+                width: auto;
+                height: auto; /*//尺寸保持原视频大小*/
+                z-index: -100; /*//z轴定位，小于0即可*/
+                -webkit-filter: grayscale(20%); /*//添加灰度蒙版，如果设定为100%则视频显示为黑白*/
+            }
+        </style>
+        <script>
+            function refresh(obj) {
+                $(obj).attr("src", "/Login/VerifyCode?time=" + new Date().getTime());
+            }
+        </script>
+
+    </div>
+}

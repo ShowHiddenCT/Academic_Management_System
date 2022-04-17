@@ -1,0 +1,30 @@
+﻿@model WebApplication3.Models.tb_teacher
+@{
+    ViewBag.Title = "Course";
+}
+
+<h2>Course</h2>
+
+
+<button>选择你要交的课</button>
+<div>
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>课程号</th>
+                <th>课程名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.courseList)
+            {
+                <tr>
+                    <td>@item.CourseNo</td>
+                    <td>@item.CourseName</td>
+                    <td>@Html.ActionLink("选择", "TeachCourse", new { id = Model.TeacherNo + "," + @item.CourseNo })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

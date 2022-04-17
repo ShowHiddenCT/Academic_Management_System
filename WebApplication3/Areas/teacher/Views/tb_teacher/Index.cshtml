@@ -1,0 +1,115 @@
+﻿@model WebApplication3.Models.tb_teacher
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div style="height:60px;margin-top:0px">
+    <div class="layui-row" style="padding :10px;background-color:white">
+        <i class="layui-icon layui-icon-speaker"></i>
+        <span>[落实安全教育] 落实安全教育</span>
+    </div>
+</div>
+<div>
+    <div class="layui-col-md3" style=" margin-left:60px;width:220px; height:150px; background-color:white">
+        <div>
+            <div class="layui-row" style="border-bottom: 1px solid #eeee; padding: 10px">
+                <i class="layui-icon layui-icon-template-1"></i>
+                <span>青春物语</span>
+            </div>
+            <div>
+                <p>世界是你们的，也是我们的，但是归根结底是你们的。你们青年人朝气蓬勃，正在兴旺时期，好像早晨八九点钟的太阳。希望寄托在你们身上。 ---毛泽东</p>
+            </div>
+        </div>
+    </div>
+    <section class="layui-col-md2" style="width: 220px;height: 150px; margin-left: 20px; background-color: white ">
+        <div>
+            <div class="layui-row" style="border-bottom: 1px solid #eeee; padding: 10px">
+                <i class="layui-icon layui-icon-user"></i>
+                <span>学生人数</span>
+            </div>
+            <div style="color: #009688">
+                <span style="font-size:48px">@ViewBag.studentCount</span>
+            </div>
+            <div>当前在校人数：  人</div>
+        </div>
+    </section>
+    <section class="layui-col-md2" style="width: 220px; height: 150px; margin-left: 20px; background-color: white ">
+        <div>
+            <div class="layui-row" style="border-bottom:1px solid #eeee; padding:10px">
+                <i class="layui-icon layui-icon-group"></i>
+                <span>教师人数</span>
+            </div>
+            <div style="color: #009688">
+                <span style="font-size:48px">@ViewBag.teacherCount</span>
+            </div>
+            <div>当前在岗人数：  人</div>
+        </div>
+    </section>
+    <section class="layui-col-md2" style="width: 220px; height: 150px; margin-left: 20px; background-color: white ">
+        <div>
+            <div class="layui-row" style="border-bottom: 1px solid #eeee; padding: 10px">
+                <i class="layui-icon layui-icon-list"></i>
+                <span>开设院系数</span>
+            </div>
+            <div style="color: #009688">
+                <span style="font-size:48px">@ViewBag.dept</span>
+            </div>
+            <div>当前开设院系数：</div>
+        </div>
+    </section>
+</div>
+
+<div>
+    <div class="layui-col-md6" style=" margin:10px;background-color:white">
+        <div>
+            <div class="layui-row" style="border-bottom: 1px solid #eeee; padding: 10px">
+                <i class="layui-icon layui-icon-template-1"></i>
+                <span>系统信息</span>
+            </div>
+            <div>
+                <table class="layui-table">
+                    <tr style="height:45px">
+                        <th>系统名称：</th>
+                        <td>教务管理系统V1.0.0</td>
+                    </tr>
+                    <tr style="height:45px">
+                        <th>开发环境：</th>
+                        <td>VisualStudio 2019</td>
+                    </tr>
+                    <tr style="height:45px">
+                        <th>开发技术：</th>
+                        <td>ASP.NET MVC+jQuery+Layui+BootSump</td>
+                    </tr>
+                    <tr style="height:45px">
+                        <th>开发团队：</th>
+                        <td>山山小破队</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md5" style=" margin:10px; width:475px; background-color:white">
+        <div>
+            <div class="layui-row" style="border-bottom: 1px solid #eeee; padding: 10px">
+                <i class="layui-icon layui-icon-notice"></i>
+                <span>校园安全小知识</span>
+            </div>
+            <div>
+                <table class="layui-table">
+                    <tr>
+                        <td>1.日常安全：进进出出要走稳，上下楼梯靠右行，管制刀具莫携带，追逐打闹是祸根。</td>
+                    </tr>
+                    <tr>
+                        <td> 2.教学安全：体育课上记要领，实验操作要小心，病事缺课凭假条，综合实践按章程。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3.饮食安全：食物进场凭三证，蒸炒烹调要洗净，生冷变质处理掉，热汤开水莫伤人。
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

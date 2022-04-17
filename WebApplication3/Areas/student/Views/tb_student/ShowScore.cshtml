@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_stucourse>
+@{
+    ViewBag.Title = "ShowScore";
+}
+
+<div style="margin:0px; background-color: white">
+    <h2 style="margin-left:330px">学生成绩明细[原始]</h2>
+</div>
+
+@{ 
+    var count = 0;
+}
+<div>
+    <section class="layui-col-md3">院（系）/部: @ViewBag.dept</section>
+    <section class="layui-col-md3">专业: @ViewBag.major</section>
+    <section class="layui-col-md3">学号: @ViewBag.studentNo</section>
+    <section class="layui-col-md3">姓名: @ViewBag.studentName </section>
+</div>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>课程/环节</th>
+            <th>学分</th>
+            <th>总学时</th>
+            <th>类别</th>
+            <th>考核方式</th>
+            <th>成绩</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>[@Html.DisplayFor(modelItem => item.tb_course.CourseNo)] @Html.DisplayFor(modelItem => item.tb_course.CourseName)</td>
+                <td> @Html.DisplayFor(modelItem => item.tb_course.CourseCredit)</td>
+                <td> @Html.DisplayFor(modelItem => item.tb_course.CourseHour)</td>
+                <td> @Html.DisplayFor(modelItem => item.tb_course.CourseType)</td>
+                <td>考试</td>
+                <td> @Html.DisplayFor(modelItem => item.Grade)</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+﻿
+@model WebApplication3.Models.tb_teacher
+
+
+<h2 align="center">个人信息</h2>
+@using (Html.BeginForm("teacherinfo", "tb_teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-md-6">
+
+        <table class="col-md-12 table table-bordered">
+            <tr>
+                <td class="col-md-4">教师工号</td>
+                <td>@Html.TextBox("id", Model.TeacherNo, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">姓名</td>
+                <td>@Html.TextBox("TeacherName", Model.TeacherName, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">性别</td>
+                <td>@Html.TextBox("TeacherSex", Model.TeacherSex, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">手机号码</td>
+                <td>@Html.TextBox("TeacherTel", Model.TeacherTel, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">院系</td>
+                <td>@Html.TextBox("DeptNo", @Model.tb_dept.DeptName, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">职称</td>
+                <td>@Html.TextBox("TeacherTitle", @Model.TeacherTitle, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">出生日期</td>
+                <td>@Html.TextBox("TeacherBirthday", @Model.TeacherBirthday, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td class="col-md-4">身份证号</td>
+                <td>@Html.TextBox("TeacherId", @Model.TeacherId, new { @class = "col-md-8", disabled = "true" })</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @if (Model.Teacherphoto == null)
+        {
+            <lable>选择上传文件</lable>
+            <input type="file" name="images" />
+            <input type="submit" class="btn btn-success" />
+        }
+        else
+        {
+            <label>教师照片</label>
+            <img style="width:100px; height:100px " src="~/Pictures/@Model.Teacherphoto" />
+        }
+    </div>
+
+}
+
+
+

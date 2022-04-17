@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>教学管理服务平台</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/Css/login.css" media="all" />
+    <style>
+        /* 覆盖原框架样式 */
+        .layui-elem-quote {
+            background-color: inherit !important;
+        }
+
+        .layui-input, .layui-select, .layui-textarea {
+            background-color: inherit;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <video src="~/Pictures/back.mp4" autoplay="autoplay" loop="loop" muted></video>
+    <!-- Head -->
+    <div class="layui-fluid" style="margin-left:50px">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm12 layui-col-md12 zyl_mar_01" >
+                <blockquote class="layui-elem-quote" style="font-size:20px;color:white">学生教务管理系统</blockquote>
+            </div>
+        </div>
+    </div>
+    <div class="layui-fluid">
+        @RenderBody()
+    </div>
+    <!-- Footer End -->
+    <!-- LoginForm -->
+    <style>
+        video {
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+            /*加滤镜*/
+            /*filter: blur(15px); //背景模糊设置 */
+            /*-webkit-filter: grayscale(100%);*/
+            /*filter:grayscale(100%); //背景灰度设置*/
+            z-index: -11
+        }
+    </style>
+    <script src="~/layui/layui.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jparticle.min.js"></script>
+    <script src="~/Scripts/zylVerificationCode.js"></script>
+</body>
+</html>
