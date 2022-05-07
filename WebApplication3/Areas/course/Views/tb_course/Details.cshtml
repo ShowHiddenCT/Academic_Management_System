@@ -1,0 +1,74 @@
+﻿@model WebApplication3.Models.tb_course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_teacher.TeacherPasswd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_teacher.TeacherPasswd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCredit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseCredit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoursePlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoursePlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseHour)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

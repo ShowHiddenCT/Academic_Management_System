@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>课程管理</h2>
+<p>
+    <a href="@Url.Action("Create")" class="layui-btn layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-add-1"></i></a>
+</p>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseTeacher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseCredit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursePlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseHour)
+            </th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_teacher.TeacherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCredit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoursePlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseHour)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit",new { id = item.CourseNo })" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe642;</i></a>
+                <a href="@Url.Action("Delete",new { id = item.CourseNo })" class="layui-btn layui-btn-danger layui-btn-sm"><i class="layui-icon">&#xe640;</i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
