@@ -1,0 +1,50 @@
+﻿@model WebApplication3.Models.tb_dept
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_dept</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptChairman)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeptChairman)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeptTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeptDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DeptNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
