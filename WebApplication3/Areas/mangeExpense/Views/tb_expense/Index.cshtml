@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_expense>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>缴费管理</h2>
+<p>
+    <a href="@Url.Action("Create")" class="layui-btn layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-add-1"></i></a>
+</p>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseNum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpenseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpenseNum)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit",new { id = item.ExpenseNo })" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe642;</i></a>
+                    <a href="@Url.Action("Delete",new { id = item.ExpenseNo })" class="layui-btn layui-btn-danger layui-btn-sm"><i class="layui-icon">&#xe640;</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
