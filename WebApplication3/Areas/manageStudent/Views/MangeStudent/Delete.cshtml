@@ -1,0 +1,38 @@
+﻿@model WebApplication3.Models.tb_student
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div id="myModal" class="modal fade" style="margin-top:50px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header btn-success" style="background: #009688">
+                <h4 class="modal-title">注销该用户吗？</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt> @Html.DisplayNameFor(model => model.StudentNo) </dt>
+                    <dd> @Html.DisplayFor(model => model.StudentNo) </dd>
+
+                    <dt> @Html.DisplayNameFor(model => model.StudentName) </dt>
+                    <dd> @Html.DisplayFor(model => model.StudentName) </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="btn-block text-right">
+                        <input type="submit" value="注销" class="layui-btn" />
+                        <a class="layui-btn layui-btn-danger" href="@Url.Action("Index")">取消</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#myModal").modal();
+    $(".modal-backdrop").remove();
+</script>
