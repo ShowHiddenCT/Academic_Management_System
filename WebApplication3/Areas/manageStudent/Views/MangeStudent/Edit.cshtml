@@ -1,0 +1,143 @@
+﻿@model WebApplication3.Models.tb_student
+
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+    var a1 = new { @class = "col-md-2 control-label" };
+    var a2 = "col-md-10";
+    var a3 = new { htmlAttributes = new { @class = "form-control" } };
+    var a4 = new { @class = "text-danger" };
+}
+<style>
+    input {
+        max-width: 200px;
+    }
+</style>
+
+<div id="myModal" class="modal fade" style="margin-top:50px">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #009688">
+                    <h4 class="modal-title" style="color:white">编辑行</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+            <h4>修改学生信息</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StudentNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentPasswd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StudentPasswd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentPasswd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">专业</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("MajorNo", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MajorNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+            <label class="col-md-2 control-label">性别</label>
+            <div class="col-md-10">
+                <label class="radio-inline"><input name="sex" type="radio" value="男" />男</label>
+                <label class="radio-inline"><input name="sex" type="radio" value="女" />女</label>
+            </div>
+        </div>
+
+            <div class="form-group">
+            <label class="col-md-2 control-label">出生日期</label>
+            <div class="col-md-10">
+                <input class="form-control" id="birthDate" name="BirthDate" type="date" value="@Model.StudentBirthday" />
+                @Html.ValidationMessageFor(model => model.StudentBirthday, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Studentphoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Studentphoto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Studentphoto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StudentId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentTel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StudentTel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentTel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-block text-right">
+                        <input type="submit" value="确定" class="layui-btn" />
+                        <a class="layui-btn layui-btn-danger" href="@Url.Action("Index")">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    var sex = document.getElementsByName("sex");
+    var str_sex="@Model.StudentSex";
+    var str_sexArray=str_sex.split(',');
+    $("#myModal").modal();
+    $(".modal-backdrop").remove();
+    $(function()
+    {
+        for( var i = 0; i < sex.length; i++ )
+        {
+            for(var j = 0; j < str_sexArray.length; j++ ){
+                if(sex[i].value==str_sexArray[j]){
+                    sex[i].checked=true;
+                }
+            }
+        }
+        var now = "@Model.StudentBirthday";
+        var dates=now.split(' ');
+        var date=dates[0].split('/');
+        //格式化日，如果小于9，前面补0  
+        var day = ("0" + date[2]).slice(-2);     
+        //格式化月，如果小于9，前面补0  
+        var month = ("0" + date[1]).slice(-2);  
+        //拼装完整日期格式  
+        var today = date[0]+"-"+(month)+"-"+(day) ;  
+        //完成赋值  
+        $('#birthDate').val(today); 
+    });
+</script>

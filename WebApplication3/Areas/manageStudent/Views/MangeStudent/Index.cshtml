@@ -1,0 +1,179 @@
+﻿@model IEnumerable<WebApplication3.Models.SelectStudent>
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "loading",
+        UpdateTargetId = "mainWindow",
+        OnFailure = "OnFailure"
+    };
+}
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .father {
+        width: 1000px;
+        height: 50px;
+        overflow: hidden;
+    }
+
+    .son {
+        display: inline-block;
+        width: 300px;
+        height: 50px;
+        text-align: left;
+    }
+</style>
+<h2>学生管理</h2>
+
+<div style="display:flex;flex-direction:row;justify-content: space-between;">
+    <p>
+        <a href="@Url.Action("Create")" class="layui-btn layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-add-1"></i></a>
+    </p>
+    @using (Ajax.BeginForm("AddStudents", "MangeStudent", ajaxOptions, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="file" name="StudentsFile" />
+        <input type="submit" class="btn btn-success" />
+    }
+</div>
+
+@using (Ajax.BeginForm(ajaxOptions))
+{
+    <div style="background-color: #eee; " class="Seeknav ">
+        <div>
+            <label class="control-label" style="font-size: large;">查询条件:</label>
+        </div>
+        <div class="father form-horizontal">
+            <div style="margin-left:20px" class="son form-group ">
+                <label class="" style="margin-left: 10px;height:20px" >
+                    学号
+                </label>
+                <input id="no" name="No" class="col-md-6 t1" type="text" oninput="f()">
+            </div>
+            <div class="son form-group ">
+                <label class="control-label" style="margin-left: 10px;">
+                    专业
+                </label>
+                <select  id="major" name="Major"  class="col-md-8 t2 layui-select-group" style="margin-top:8px;height:22px" onchange="f()">
+                    <option></option>
+                    <option value="数据科学">数据科学</option>
+                    <option value="计算机科学与技术">计算机科学与技术</option>
+                    <option value="信息安全">信息安全</option>
+                    <option value="统计学">统计学</option>
+                    <option value="自动化">自动化</option>
+                </select>
+            </div>
+            <div class="son form-group ">
+                <label class="control-label" style="margin-left: 10px;">
+                    学院
+                </label>
+                <select id="college" name="Dept"  class="col-md-8 t3 layui-select-group" style="margin-top:8px;height:22px" onchange="f()">
+                    <option></option>
+                    <option value="数学与统计学院">数学与统计学院</option>
+                    <option value="计算机与信息工程学院">计算机与信息工程学院</option>
+                    <option value="物理与电子学院">物理与电子学院</option>
+                    <option value="生命科学学院">生命科学学院</option>
+                </select>
+            </div>
+            <div class="son" style="width: 100px;margin-right:10px ">
+                <input type="submit" value="查询" disabled="" id="bu" class="btn1 btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>
+                学号
+            </th>
+            <th>
+                专业
+            </th>
+            <th>
+                院系
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>
+                性别
+            </th>
+            <th>
+                出生日期
+            </th>
+            <th>
+                身份证号
+            </th>
+            <th>
+                电话号
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @item.StudentNo
+                    </td>
+                    <td>
+                        @item.Major
+                    </td>
+                    <td>
+                        @item.College
+                    </td>
+                    <td>
+                        @item.StudentName
+                    </td>
+                    <td>
+                        @item.StudentSex
+                    </td>
+                    <td>
+                        @item.StudentBirthday
+                    </td>
+                    <td>
+                        @item.StudentId
+                    </td>
+                    <td>
+                        @item.StudentTel
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit",new { id = item.StudentNo })" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe642;</i></a>
+                        <a href="@Url.Action("Delete",new { id = item.StudentNo })" class="layui-btn layui-btn-danger layui-btn-sm"><i class="layui-icon">&#xe640;</i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<script>
+    function f() {
+        var no = $('#no')[0].value;
+        var major = $('#major')[0].value;
+        var college = $('#college')[0].value;
+      
+        if (no) {
+            $('#college').val();
+            $('#major').val();
+            $('#college').attr('disabled', 'disabled');
+            $('#major').attr('disabled', 'disabled');
+        }
+        else
+        {
+            $('#major').removeAttr('disabled', 'disabled');
+            $('#college').removeAttr('disabled', 'disabled');
+        }
+        if (no || major || college) {
+            $('#bu').removeAttr('disabled', 'disabled');
+        }
+        else
+            $('#bu').attr('disabled', 'disabled');
+    }
+   
+</script>
