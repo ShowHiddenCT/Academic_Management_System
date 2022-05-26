@@ -1,0 +1,90 @@
+﻿@model WebApplication3.Models.tb_teacher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_teacher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_dept.DeptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_dept.DeptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherPasswd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherPasswd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherSex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherSex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherBirthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherBirthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacherphoto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacherphoto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherTel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeacherNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
