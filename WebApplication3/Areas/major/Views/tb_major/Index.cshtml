@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplication3.Models.tb_major>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>开设专业</h2>
+<p>
+    <a href="@Url.Action("Create")" class="layui-btn layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-add-1"></i></a>
+</p>
+@*<div class="layui-inline" title="导出" lay-event="LAYTABLE_EXPORT">
+    <i class="layui-icon layui-icon-export"></i>
+    <ul class="layui-table-tool-panel">
+        <li data-type="csv">导出到 Csv 文件</li>
+        <li data-type="xls">导出到 Excel 文件</li>
+    </ul>
+</div>*@
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>专业号</th>
+            <th>专业名字</th>
+            <th>所属院系</th>
+            <th>导员</th>
+            <th>联系方式</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tb_dept.DeptName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorAssistant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorTel)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit",new { id = item.MajorNo })" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe642;</i></a>
+                    <a href="@Url.Action("Delete",new { id = item.MajorNo })" class="layui-btn layui-btn-danger layui-btn-sm"><i class="layui-icon">&#xe640;</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
